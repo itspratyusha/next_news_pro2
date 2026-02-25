@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function TodayDate() {
   let [date, setDate] = useState([]);
-  const [temperature, setTemperature] = useState([]);
+  
 
   useEffect(() => {
     let today = new Date();

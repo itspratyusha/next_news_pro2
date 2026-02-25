@@ -8,7 +8,7 @@ function Footer() {
                     <div className='row '>
                         <div className='col-lg-3'>
                             <h1 className='pb-3'>Kiante</h1>
-                            <p className='space-y-3'>The stars will never align, and the traffic lights of life will never all be green at the same time.The stars will never align.</p>
+                            <p className='space-y-3'>The stars will never align, and the traffic lights of life will never all be green at the same time.The stars will never alignments.</p>
                            
                             <p className='pt-3'><span className='fw-bold'>Email :</span> info@example.com <br/>
                             <span className='fw-bold'>Phone :</span> 00249 123 333 7199 </p>
