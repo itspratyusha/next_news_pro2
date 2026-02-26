@@ -4,7 +4,7 @@ function Footer() {
     return (
         <>
             <footer className='bg-black text-white'>
-                <div className='container  py-5'>
+                <div className='container py-5 '>
                     <div className='row '>
                         <div className='col-lg-3'>
                             <h1 className='pb-3'>Kiante</h1>
@@ -16,7 +16,7 @@ function Footer() {
                         </div>
                         <div className='col-lg-3'>
                             <h3 className='pb-3'>Quick Links</h3>
-                            <ul className='list-unstyled space-y-5'>
+                            <ul className='list-unstyled space-y-5 d-grid gap-3 '>
                                 <li>Marketing</li>
                                 <li>Motivation</li>
                                 <li>Politics</li>
@@ -26,7 +26,7 @@ function Footer() {
                         </div>
                         <div className='col-lg-3'>
                             <h3 className='pb-3'>Entertainment</h3>
-                            <ul className='list-unstyled space-y-5'>
+                            <ul className='list-unstyled space-y-5 d-grid gap-3'>
                                 <li>Hollywood</li>
                                 <li>Music</li>
                                 <li>Videos</li>
@@ -36,7 +36,7 @@ function Footer() {
                         </div>
                         <div className='col-lg-3 '>
                             <h3 className='pb-3'>Overview</h3>
-                            <ul className='list-unstyled space-y-5'>
+                            <ul className='list-unstyled space-y-5 d-grid gap-3'>
                                 <li>Business</li>
                                 <li>About</li>
                                 <li>Contact</li>
