@@ -7,6 +7,7 @@ export default function Page() {
 
   useEffect(() => {
     fetch(`https://newsapi.org/v2/everything?q=apple&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
+    
      .then(a => a.json())
      .then(b => setNews(b.articles)) 
     }, [])
@@ -64,7 +65,6 @@ export default function Page() {
       </div>
        <div className="right col-4">
         <h2 className="sidebarTitle ">Featured Posts</h2>
-
         {news.slice(14, 18).map((a) => (
           <div key={a.url} className="sideItem ">
             <img className=' h-50 w-40' src={a.urlToImage} alt="" />
@@ -73,13 +73,21 @@ export default function Page() {
               <p>{a.source.name}</p>
             </div>
             
-
           </div>
-
+        ))}
+         {news.slice(34,35).map((a) => (
+          <div key={a.url} className="box">
+            <h2 className='text-black'>Weekly Post</h2>
+            <img className='im1' src={a.urlToImage} alt="" />
+            <div>
+              <h5 className='text-black'>{a.title}</h5>
+              <p className='text-black'>{a.source.name}</p>
+            </div>
+            
+          </div>
         ))}
 
-      </div>
-      
+      </div>    
       </div>
     </div>
     </section>

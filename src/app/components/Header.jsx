@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
 
@@ -47,27 +48,26 @@ function Header() {
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
+          <Link className="nav-link active" aria-current="page" href="#">Home</Link>
         </li>
          <li className="nav-item">
-          <a className="nav-link" href="#">Bussiness</a>
+          <Link className="nav-link" href="#">Bussiness</Link>
         </li>
          <li className="nav-item">
-          <a className="nav-link" href="#">Politics</a>
+          <Link className="nav-link" href="#">Politics</Link>
         </li>
       
         <li className="nav-item">
-          <a className="nav-link" href="#">Culture</a>
+          <Link className="nav-link" href="#">Culture</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Sports</a>
+          <Link className="nav-link" href="#">Sports</Link>
         </li>
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-More          </a>
+          <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More          </Link>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Science & Tech</a></li>
-            <li><a className="dropdown-item" href="#">Health</a></li>
+            <li><Link className="dropdown-item" href="#">Science & Tech</Link></li>
+            <li><Link className="dropdown-item" href="#">Health</Link></li>
           </ul>
         </li>
       </ul>
