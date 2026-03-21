@@ -78,10 +78,10 @@ export default function Page() {
          {news.slice(34,35).map((a) => (
           <div key={a.url} className="box">
             <h2 className='text-black'>Weekly Post</h2>
-            <img className='im1' src={a.urlToImage} alt="" />
+            <img className='h-75 img-fluid mb-3 mt-4' src={a.urlToImage} alt="" />
             <div>
               <h5 className='text-black'>{a.title}</h5>
-              <p className='text-black'>{a.source.name}</p>
+              <p className='text-black fw-bold'>{a.source.name}</p>
             </div>
             
           </div>
