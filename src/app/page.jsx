@@ -18,10 +18,10 @@ export default function Page() {
     <div className="container">
 <div className='row'>
       {/* LEFT SIDE */}
-      <div className="left col-8">
+      <div className="left col-8 ">
         {news.slice(0, 1).map((a) => (
           <div key={a.url}>
-            <img src={a.urlToImage} alt="" />
+            <img className='mb-3' src={a.urlToImage} alt="" />
             <h2>{a.title}</h2>
             <p>{a.description}</p>
           </div>
@@ -31,31 +31,36 @@ export default function Page() {
       {/* RIGHT SIDE */}
       <div className="right col-4">
         <h2 className="sidebarTitle ">Most loved</h2>
-
         {news.slice(9, 13).map((a) => (
-          <div key={a.url} className="sideItem">
+          <div key={a.url} className="sideItem ">
             <img src={a.urlToImage} alt="" />
             <div>
               <h4>{a.title}</h4>
-              <p>{a.source.name}</p>
+              <p className=''>{a.source.name}</p>
             </div>
           </div>
         ))}
       </div>
 </div>
-      <div className="left d-flex gap-3">
+{/* all 3 box */}
+      <section className="left ">
+        <div className='row row-cols-3'>
         {news.slice(2, 5).map((a) => (
           <div key={a.url}>
-            <img src={a.urlToImage} alt="" />
+            <img className='mb-3 w-100' src={a.urlToImage} alt="" />
             <h2>{a.title}</h2>
             <p>{a.description}</p>
           </div>
+          
         ))}
-      </div>
-<h3>Business</h3>
+        </div>
+      </section>
+
+<section className='py-4 fw-bold display-5'></section>
+{/* left1 */}
       <div className="left d-flex gap-3">
       <div className='row'>
-        {news.slice(19, 23).map((a) => (
+        {news.slice(35, 39).map((a) => (
           <div className='col-lg-6 ' key={a.url}>
             <img src={a.urlToImage} alt="" />
             <h2>{a.title}</h2>
@@ -63,16 +68,17 @@ export default function Page() {
           </div>
         ))}
       </div>
-       <div className="right col-4">
-        <h2 className="sidebarTitle ">Featured Posts</h2>
-        {news.slice(14, 18).map((a) => (
+
+      {/* right1 */}
+     <div className="right col-4">
+        <h2 className="sidebarTitle ">Most loved</h2>
+        {news.slice(29, 33).map((a) => (
           <div key={a.url} className="sideItem ">
-            <img className=' h-50 w-40' src={a.urlToImage} alt="" />
+            <img className='' src={a.urlToImage} alt="" />
             <div>
               <h4>{a.title}</h4>
-              <p>{a.source.name}</p>
+              <p className=''>{a.source.name}</p>
             </div>
-            
           </div>
         ))}
          {news.slice(34,35).map((a) => (
@@ -91,6 +97,7 @@ export default function Page() {
       </div>
     </div>
     </section>
+    
     </>
   )
 }
