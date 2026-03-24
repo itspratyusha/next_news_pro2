@@ -1,7 +1,7 @@
 
 .left img {
   width: 100%;
-  height: 350px;
+  height: 250px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -12,6 +12,11 @@
 }
 
 .right {
+  border-left: 3px solid red;
+  padding-left: 20px;
+  height: 550px;
+}
+.right1 {
   border-left: 3px solid red;
   padding-left: 20px;
   height: 450px;
@@ -40,8 +45,16 @@
 }
 .box{
   background-color: #F5F2FF ;
-  width: 400px;
-  padding: 30px;
+  width: 390px;
+  padding: 16px;
   border-radius: 10px;
 }
-
+.truncate{
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines */
+  -webkit-box-orient: vertical; /*needed which direction to arrange content*/
+  overflow: hidden;
+}
+.t1{
+  top: 50px;
+}

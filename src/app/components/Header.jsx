@@ -37,16 +37,17 @@ function Header() {
         </div>
       </section>
 
-<nav className="navbar navbar-expand-lg bg-light navbar-light p-3">
-  <div className="container">
+<nav className="navbar navbar-expand-lg bg-light navbar-light p-3 ">
+  <div className="container ">
     <a className="navbar-brand" href="#">
       <img className='w-75' src="http://kiante.wowtheme7.com/wp-content/uploads/2022/04/cropped-Logo-Black.png" alt="" />
     </a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
-    <div className="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul className="navbar-nav">
+
+    <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNavDropdown">
+      <ul className="navbar-nav gap-3 fs-5">
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" href="#">Home</Link>
         </li>
@@ -64,13 +65,14 @@ function Header() {
           <Link className="nav-link" href="#">Sports</Link>
         </li>
         <li className="nav-item dropdown">
-          <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More          </Link>
+          <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</Link>
           <ul className="dropdown-menu">
             <li><Link className="dropdown-item" href="#">Science & Tech</Link></li>
             <li><Link className="dropdown-item" href="#">Health</Link></li>
           </ul>
         </li>
       </ul>
+      <span>search</span>
     </div>
   </div>
 </nav>
