@@ -19,7 +19,7 @@
 .right1 {
   border-left: 3px solid red;
   padding-left: 20px;
-  height: 450px;
+  height: 470px;
 }
 
 .sidebarTitle {
@@ -57,4 +57,42 @@
 }
 .t1{
   top: 50px;
+}
+.position-relative{
+    position: relative;
+}
+
+.play-btn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*center align */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: rgba(8, 8, 8, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 18px solid rgb(244, 240, 240);
+}
+.position-relative img {
+  transition: 0.3s;
+}
+.position-relative:hover img{
+    filter: brightness(50%);
+}
+
+.ovrerlay{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
 }
