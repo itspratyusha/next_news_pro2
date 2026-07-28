@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { IoCloseSharp } from "react-icons/io5";
 
 export default function Page() {
   const [news, setNews] = useState([]);
@@ -53,7 +54,8 @@ export default function Page() {
               {news.slice(22, 25).map((a, index) => (
                 <div key={a.url} className="col">
                   <div className="position-relative">
-                    {playing === a.url ?(
+                    {playing === index ?(
+                      <>
                       <iframe
                         width="100%"
                         height="250"
@@ -62,6 +64,8 @@ export default function Page() {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       ></iframe>
+                      
+                      </>
                     ) : (
                       <>
                       <img
@@ -75,11 +79,14 @@ export default function Page() {
                     
                     <div className="overlay"></div>
 
-                    <button className="play-btn" onClick={() => setPlaying(a.url)}>
-                      
-                      <span className="triangle"></span>
-                     
-                    </button>
+                    <button className="play-btn" onClick={() => setPlaying(index)}>
+                            
+                              <span className="triangle"></span>
+                            
+                            </button>
+                            <button className="close-btn" onClick={() => setPlaying(null)}>
+                              <IoCloseSharp />
+                            </button>
 
                     <div className="position-absolute bottom-0 start-0 m-3 text-white">
                       <h2 className="fs-5">{a.title}</h2>
