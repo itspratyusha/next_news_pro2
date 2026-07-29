@@ -9,13 +9,16 @@ export default function Page() {
 
   useEffect(() => {
     async function getNews() {
+      console.log("Fetching news...");
       const response = await fetch(
-        `https://newsapi.org/v2/everything?q=apple&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`,
-      );
-      const data = await response.json();
-      setNews(data.articles);
+  `https://gnews.io/api/v4/top-headlines?lang=en&country=us&max=10&apikey=${process.env.NEXT_PUBLIC_GNEWS_API_KEY}`
+);
+     const data = await response.json();
+console.log(data.articles[0]);
+setNews(data.articles);
     }
     getNews();
+    
   }, []);
 
   return (
@@ -24,10 +27,10 @@ export default function Page() {
         <div className="container">
           <div className="row">
             {/* LEFT SIDE */}
-            <div className="left col-8 ">
-              {news.slice(43, 44).map((a) => (
+            <div className="left col-8 o-lay ">
+              {news.slice(0, 1).map((a) => (
                 <div key={a.url}>
-                  <img className="h-100" src={a.urlToImage} alt="" />
+                  <img className="h-100" src={a.image} alt="" />
                   <h2 className="fs-3 mt-2">{a.title}</h2>
                   <p>{a.description}</p>
                 </div>
@@ -35,11 +38,11 @@ export default function Page() {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="right col-4">
+            <div className="right col-4 ">
               <h2 className="sidebarTitle ">Most loved</h2>
-              {news.slice(9, 14).map((a) => (
-                <div key={a.url} className="sideItem ">
-                  <img src={a.urlToImage} alt="" />
+              {news.slice(2, 7).map((a) => (
+                <div key={a.url} className="sideItem o-lay">
+                  <img src={a.image} alt="" />
                   <div>
                     <h4>{a.title}</h4>
                     <p className="">{a.source.name}</p>
@@ -50,10 +53,10 @@ export default function Page() {
           </div>
           {/* all 3 box */}
           <section className="left">
-            <div className="row row-cols-3 g-3">
-              {news.slice(22, 25).map((a, index) => (
+            <div className="row row-cols-3 g-3 ">
+              {news.slice(3, 6).map((a, index) => (
                 <div key={a.url} className="col">
-                  <div className="position-relative">
+                  <div className="position-relative o-lay">
                     {playing === index ?(
                       <>
                       <iframe
@@ -69,13 +72,10 @@ export default function Page() {
                     ) : (
                       <>
                       <img
-                        src={a.urlToImage}
+                        src={a.image}
                         className="img-fluid w-100"
                         alt={a.title}
                       />
-                    
-                      
-               
                     
                     <div className="overlay"></div>
 
@@ -103,10 +103,10 @@ export default function Page() {
           <h6 className="mt-3 mb-2 fw-bold fs-1">Bussiness</h6>
           {/* left1 */}
           <div className="left d-flex gap-3">
-            <div className="row">
-              {news.slice(35, 39).map((a) => (
-                <div className="col-lg-6 " key={a.url}>
-                  <img src={a.urlToImage} alt="" />
+            <div className="row ">
+              {news.slice(5, 9).map((a) => (
+                <div className="col-lg-6 o-lay" key={a.url}>
+                  <img src={a.image} alt="" />
                   <h2 className="fs-3 mt-2">{a.title}</h2>
                   <p className="truncate">{a.description}</p>
                 </div>
@@ -116,21 +116,21 @@ export default function Page() {
             {/* right1 */}
             <div className="right1 col-4">
               <h2 className="sidebarTitle ">Most loved</h2>
-              {news.slice(29, 33).map((a) => (
-                <div key={a.url} className="sideItem ">
-                  <img src={a.urlToImage} alt="" />
+              {news.slice(4, 8).map((a) => (
+                <div key={a.url} className="sideItem o-lay">
+                  <img src={a.image} alt="" />
                   <div>
                     <h4>{a.title}</h4>
                     <p className="">{a.source.name}</p>
                   </div>
                 </div>
               ))}
-              {news.slice(34, 35).map((a) => (
+              {news.slice(5, 6).map((a) => (
                 <div key={a.url} className="box mt-3">
                   <h2 className="text-black">Weekly Post</h2>
                   <img
                     className="h-75 img-fluid mb-3"
-                    src={a.urlToImage}
+                    src={a.image}
                     alt=""
                   />
                   <div>

@@ -5,14 +5,14 @@ import React, { useEffect, useState } from 'react'
 
 function Header() {
   let [temp, setTemp] = useState([]);
-  let [news, setNews] = useState([])
+  
   useEffect(() => {
-    fetch("https://api.open-meteo.com/v1/forecast?latitude=27.7&longitude=85.3&current_weather=true").then(a => a.json()).then(data => {setTemp(data.current_weather.temperature);
-      fetch(`https://newsapi.org/v2/everything?q=apple&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
-     .then(a => a.json())
-     .then(b => setNews(b.articles)) 
-      })
-  }, []);
+  fetch("https://api.open-meteo.com/v1/forecast?latitude=27.7&longitude=85.3&current_weather=true")
+    .then(a => a.json())
+    .then(data => {
+      setTemp(data.current_weather.temperature);
+    });
+}, []);
 
   return (
     <>
@@ -40,7 +40,7 @@ function Header() {
 <nav className="navbar navbar-expand-lg bg-light navbar-light p-3 ">
   <div className="container ">
     <a className="navbar-brand" href="#">
-      <img className='w-75' src="http://kiante.wowtheme7.com/wp-content/uploads/2022/04/cropped-Logo-Black.png" alt="" />
+      <img className='w-75' src="https://kiante.wowtheme7.com/wp-content/uploads/2022/04/cropped-Logo-Black.png" alt="" />
     </a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
