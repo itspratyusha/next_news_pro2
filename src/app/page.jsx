@@ -9,10 +9,8 @@ export default function Page() {
 
   useEffect(() => {
     async function getNews() {
-      console.log("Fetching news...");
       const response = await fetch("/api/news");
      const data = await response.json();
-console.log(data.articles[0]);
 setNews(data.articles);
     }
     getNews();
@@ -38,7 +36,7 @@ setNews(data.articles);
             {/* RIGHT SIDE */}
             <div className="right col-4 ">
               <h2 className="sidebarTitle ">Most loved</h2>
-              {news.slice(2, 7).map((a) => (
+              {news.slice(7, 10).map((a) => (
                 <div key={a.url} className="sideItem o-lay">
                   <img src={a.image} alt="" />
                   <div>
