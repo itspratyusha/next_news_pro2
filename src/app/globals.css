@@ -20,7 +20,7 @@
 .right1 {
   border-left: 3px solid red;
   padding-left: 20px;
-  height:45px
+  height:45px;
   
 }
 
@@ -47,7 +47,10 @@
 }
 .box{
   background-color: #F5F2FF ;
-  width: 390px;
+  
+  width: 100%;
+  max-width: 390px;
+
   padding: 16px;
   border-radius: 10px;
 }
@@ -108,4 +111,17 @@
   font-size: 15px;
   cursor: pointer;
 }
+.video-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    max-width: 90%;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 9999;
+}
+
 
