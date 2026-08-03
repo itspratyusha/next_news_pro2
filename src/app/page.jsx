@@ -23,19 +23,19 @@ export default function Page() {
         <div className="container">
           <div className="row">
             {/* LEFT SIDE */}
-            <div className="left col-12 col-lg-8 o-lay ">
+            <div className="left col-lg-8 o-lay ">
               {news.slice(0, 1).map((a) => (
                 <div key={a.url}>
                   <img className="h-100" src={a.image} alt="" />
-                  <h2 className="fs-3 mt-2">{a.title}</h2>
-                  <p>{a.description}</p>
+                  <h2 className="fs-3 mt-2 leng">{a.title}</h2>
+                  <p className="leng">{a.description}</p>
                 </div>
               ))}
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="right col-4 col-lg-4 d-none d-md-block d-lg-block">
-              <h2 className="sidebarTitle ">Most loved</h2>
+            <div className=" col-lg-4 d-none d-md-block d-lg-block">
+              <h2 className="border-side mb-4 ">Most loved</h2>
               {news.slice(2, 7).map((a) => (
                 <div key={a.url} className="sideItem o-lay">
                   <img src={a.image} alt="" />
@@ -47,6 +47,7 @@ export default function Page() {
               ))}
             </div>
           </div>
+
           {/* all 3 box */}
           <section className="left">
             <div className="row row-cols-lg-3 g-3 ">
@@ -56,7 +57,7 @@ export default function Page() {
                     <>
                       <img
                         src={a.image}
-                        className="img-fluid w-100"
+                        className="img-fluid w-100 pict"
                         alt={a.title}
                       />
 
@@ -73,11 +74,11 @@ export default function Page() {
                       </button>
 
                       <div className="position-absolute bottom-0 start-0 m-3 text-white">
-                        <h2 className="fs-3 mt-2 d-block d-md-none">
+                        <h2 className="fs-5 mt-2 d-block d-md-none">
                           {a.title.slice(0, 50)}...
                         </h2>
 
-                        <h2 className="fs-3 mt-2 d-none d-md-block">
+                        <h2 className="fs-5 mt-2 d-none d-md-block">
                           {a.title}
                         </h2>
                       </div>
@@ -87,26 +88,29 @@ export default function Page() {
               ))}
             </div>
           </section>
+
           <section>
-            <h6 className="mt-3 mb-2 fw-bold fs-1">Bussiness</h6>
+            <h6 className="mt-3 mb-3 fw-bold fs-1 border-down">Bussiness</h6>
           </section>
           {/* left1 */}
           <section>
-            <div className="left d-flex gap-3">
+            <div className="row ">
+            <div className="left col-lg-8 gap-3">
               <div className="row ">
                 {news.slice(5, 9).map((a) => (
-                  <div className="col-lg-6 o-lay" key={a.url}>
+                  
+                  <div className="col-6 col-lg-6 col-md-6 o-lay" key={a.url}>
                     <img src={a.image} alt="" />
-                    <h2 className="fs-3 mt-2">{a.title}</h2>
-                    <p className="truncate">{a.description}</p>
+                    <h2 className="fs-3 mt-2 leng">{a.title}</h2>
+                    <p className="leng">{a.description}</p>
                   </div>
                 ))}
+                </div>
               </div>
-
-              {/* right1 */}
-              <div className="right1 col-4">
-                <h2 className="sidebarTitle ">Most loved</h2>
-                {news.slice(4, 8).map((a) => (
+              {/* RIGHT1 SIDE */}
+              <div className=" col-lg-4 d-none d-md-block d-lg-block">
+                <h2 className="border-side mb-4 ">Most loved</h2>
+                {news.slice(2, 5).map((a) => (
                   <div key={a.url} className="sideItem o-lay">
                     <img src={a.image} alt="" />
                     <div>
@@ -131,23 +135,57 @@ export default function Page() {
               </div>
             </div>
           </section>
-          <section>
+          <div className="mt-3">
+            <img className="mb-3 col-12" src="https://kiante.wowtheme7.com/wp-content/uploads/2022/02/kiante-ads.png" alt="" />
+          </div>
+          <section className="mt-3">
             <div className="row">
               {/* LEFT SIDE */}
-              <div className="left col-12 col-lg-8 o-lay ">
-                {news.slice(0, 1).map((a) => (
+              <div className="left col-lg-8  ">
+                <div className="row "></div>
+                {news.slice(7,8).map((a) => (
                   <div key={a.url}>
-                    <img className="h-100" src={a.image} alt="" />
+                    <img className="h-100 " src={a.image} alt="" />
                     <h2 className="fs-3 mt-2">{a.title}</h2>
                     <p>{a.description}</p>
                   </div>
                 ))}
+                
+              <div className="row ">
+                {news.slice(5, 9).map((a) => (
+                  
+                  <div className="col-lg-6 o-lay mb-4" key={a.url}>
+                  <div className="row ">
+                    <div className="col-4">
+                    <img className="img-fluid rounded h-100 w-100" src={a.image} alt="" />
+                    
+                    </div>
+                    <div className="col-8">
+                    <h2 className="fs-5 leng">{a.title}</h2>
+                      <div className="gap-3 mt-3">
+            <strong>{a.source.name}</strong>
+            <span>{new Date(a.publishedAt).toDateString()}</span>
+          </div>
+                    </div>
+                 </div>
+                  </div>
+                ))}
+                </div>
               </div>
 
               {/* RIGHT SIDE */}
-              <div className="right col-4 col-lg-4">
-                <h2 className="sidebarTitle ">Most loved</h2>
-                {news.slice(2, 6).map((a) => (
+              <div className=" col-4 col-lg-4">
+                <div>
+  <h2 className="border-side mb-4">Social Media</h2>
+  <div className="mb-3">
+  <img className="mb-4 " src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
+  <img className="mb-4 ms-5" src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
+  <img className="mb-4 " src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
+  <img className="mb-4 ms-5"src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
+</div>
+</div>
+                <h2 className="border-side mb-4">Most loved</h2>
+                {news.slice(6, 10).map((a) => (
                   <div key={a.url} className="sideItem o-lay">
                     <img src={a.image} alt="" />
                     <div>
@@ -156,6 +194,17 @@ export default function Page() {
                     </div>
                   </div>
                 ))}
+                <div>
+                  <h2 className="border-side mb-4">Tags</h2>
+                  <div className="row g-2 row-cols-sm-2">
+  <div className="col-auto"><button className="tag">Business</button></div>
+  <div className="col-auto"><button className="tag">Technology</button></div>
+  <div className="col-auto"><button className="tag">Health</button></div>
+  <div className="col-auto"><button className="tag">Science</button></div>
+  <div className="col-auto"><button className="tag">Sports</button></div>
+  <div className="col-auto"><button className="tag">Entertainment</button></div>
+</div>
+                </div>
               </div>
             </div>
           </section>
