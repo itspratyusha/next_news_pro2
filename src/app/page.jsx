@@ -24,7 +24,7 @@ export default function Page() {
           <div className="row">
             {/* LEFT SIDE */}
             <div className="left col-lg-8 o-lay ">
-              {news.slice(0, 1).map((a) => (
+              {news.filter((a) => a.image).slice(0, 1).map((a) => (
                 <div key={a.url}>
                   <img className="h-100" src={a.image} alt="" />
                   <h2 className="fs-3 mt-2 leng">{a.title}</h2>
@@ -36,7 +36,7 @@ export default function Page() {
             {/* RIGHT SIDE */}
             <div className=" col-lg-4 d-none d-md-block d-lg-block">
               <h2 className="border-side mb-4 ">Most loved</h2>
-              {news.slice(2, 7).map((a) => (
+              {news.filter((a) => a.image).slice(2, 7).map((a) => (
                 <div key={a.url} className="sideItem o-lay">
                   <img src={a.image} alt="" />
                   <div>
@@ -51,7 +51,7 @@ export default function Page() {
           {/* all 3 box */}
           <section className="left">
             <div className="row row-cols-lg-3 g-3 ">
-              {news.slice(3, 6).map((a, index) => (
+              {news.filter((a) => a.image).slice(3, 6).map((a, index) => (
                 <div key={a.url} className="col">
                   <div className="position-relative o-lay">
                     <>
@@ -97,7 +97,7 @@ export default function Page() {
             <div className="row ">
             <div className="left col-lg-8 gap-3">
               <div className="row ">
-                {news.slice(5, 9).map((a) => (
+                {news.filter((a) => a.image).slice(5, 9).map((a) => (
                   
                   <div className="col-6 col-lg-6 col-md-6 o-lay" key={a.url}>
                     <img src={a.image} alt="" />
@@ -110,7 +110,7 @@ export default function Page() {
               {/* RIGHT1 SIDE */}
               <div className=" col-lg-4 d-none d-md-block d-lg-block">
                 <h2 className="border-side mb-4 ">Most loved</h2>
-                {news.slice(2, 5).map((a) => (
+                {news.filter((a) => a.image).slice(2, 5).map((a) => (
                   <div key={a.url} className="sideItem o-lay">
                     <img src={a.image} alt="" />
                     <div>
@@ -120,7 +120,7 @@ export default function Page() {
                   </div>
                 ))}
 
-                {news.slice(5, 6).map((a) => (
+                {news.filter((a) => a.image).slice(5, 6).map((a) => (
                   <div key={a.url} className="box mt-3">
                     <h2 className="text-black">Weekly Post</h2>
                     <img className="h-75 img-fluid mb-3" src={a.image} alt="" />
@@ -143,7 +143,7 @@ export default function Page() {
               {/* LEFT SIDE */}
               <div className="left col-lg-8  ">
                 <div className="row "></div>
-                {news.slice(7,8).map((a) => (
+                {news.filter((a) => a.image).slice(7,8).map((a) => (
                   <div key={a.url}>
                     <img className="h-100 " src={a.image} alt="" />
                     <h2 className="fs-3 mt-2">{a.title}</h2>
@@ -152,7 +152,7 @@ export default function Page() {
                 ))}
                 
               <div className="row ">
-                {news.slice(5, 9).map((a) => (
+                {news.filter((a) => a.image).slice(5, 9).map((a) => (
                   
                   <div className="col-lg-6 o-lay mb-4" key={a.url}>
                   <div className="row ">
@@ -162,7 +162,7 @@ export default function Page() {
                     </div>
                     <div className="col-8">
                     <h2 className="fs-5 leng">{a.title}</h2>
-                      <div className="gap-3 mt-3">
+                      <div className="d-flex justify-content-between gap-3 mt-3">
             <strong>{a.source.name}</strong>
             <span>{new Date(a.publishedAt).toDateString()}</span>
           </div>
@@ -177,15 +177,15 @@ export default function Page() {
               <div className=" col-4 col-lg-4">
                 <div>
   <h2 className="border-side mb-4">Social Media</h2>
-  <div className="mb-3">
+  <div className="d-flex flex-wrap gap-2">
   <img className="mb-4 " src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
-  <img className="mb-4 ms-5" src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
   <img className="mb-4 " src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
-  <img className="mb-4 ms-5"src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
+  <img className="mb-4 " src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
+  <img className="mb-4 "src="https://kiante.wowtheme7.com/wp-content/uploads/2022/03/facebook-icon.svg" alt="Social Media" />
 </div>
 </div>
                 <h2 className="border-side mb-4">Most loved</h2>
-                {news.slice(6, 10).map((a) => (
+                {news.filter((a) => a.image).slice(6, 10).map((a) => (
                   <div key={a.url} className="sideItem o-lay">
                     <img src={a.image} alt="" />
                     <div>
@@ -196,13 +196,13 @@ export default function Page() {
                 ))}
                 <div>
                   <h2 className="border-side mb-4">Tags</h2>
-                  <div className="row g-2 row-cols-sm-2">
-  <div className="col-auto"><button className="tag">Business</button></div>
-  <div className="col-auto"><button className="tag">Technology</button></div>
-  <div className="col-auto"><button className="tag">Health</button></div>
-  <div className="col-auto"><button className="tag">Science</button></div>
-  <div className="col-auto"><button className="tag">Sports</button></div>
-  <div className="col-auto"><button className="tag">Entertainment</button></div>
+                  <div className="d-flex flex-wrap gap-2 ">
+  <button className="tag">Business</button>
+  <button className="tag">Technology</button>
+  <button className="tag">Health</button>
+  <button className="tag">Science</button>
+  <button className="tag">Sports</button>
+  <button className="tag">Entertainment</button>
 </div>
                 </div>
               </div>
