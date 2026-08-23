@@ -6,6 +6,10 @@
   border-radius: 10px;
 }
 
+.lead-image {
+  height: 490px !important;
+}
+
 .left h1 {
   font-size: 32px;
   margin-top: 10px;
@@ -45,6 +49,208 @@
 
   padding: 16px;
   border-radius: 10px;
+}
+.weekly-post-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.weekly-post-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+.weekly-post-header h2 {
+  font-size: 1.5rem;
+}
+.weekly-post-control {
+  border: 0;
+  background: transparent;
+  color: #222;
+  cursor: pointer;
+  padding: 0;
+}
+.weekly-post-control:first-child {
+  justify-self: start;
+}
+.weekly-post-control:last-child {
+  justify-self: end;
+}
+.weekly-post-control:hover {
+  color: #d00;
+}
+.category-page {
+  background: #f4f1e9;
+  min-height: 100vh;
+  padding: 64px 0 80px;
+}
+.category-masthead {
+  border-top: 5px solid #dc2626;
+  border-bottom: 1px solid #1f2937;
+  margin-bottom: 40px;
+  padding: 22px 0 28px;
+  position: relative;
+}
+.category-back {
+  color: #374151;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.category-masthead p,
+.category-source {
+  color: #dc2626;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin: 20px 0 8px;
+  text-transform: uppercase;
+}
+.category-masthead h1 {
+  color: #172033;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  margin: 0;
+}
+.category-masthead span {
+  color: #4b5563;
+  display: block;
+  font-size: 1.05rem;
+  margin-top: 20px;
+  max-width: 560px;
+}
+.category-status {
+  color: #4b5563;
+  margin: 32px 0;
+}
+.category-feature {
+  align-items: stretch;
+  background: #172033;
+  color: #fff;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  margin-bottom: 56px;
+}
+.category-feature img {
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+  width: 100%;
+}
+.category-feature div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px;
+}
+.category-feature h2,
+.category-card h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+.category-feature h2 {
+  font-size: clamp(2rem, 3.4vw, 3.4rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0 0 20px;
+}
+.category-feature div > p:not(.category-source),
+.category-card > p:not(.category-source) {
+  color: inherit;
+  line-height: 1.55;
+}
+.category-feature a,
+.category-card a {
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.category-feature a::after,
+.category-card a::after {
+  content: " ->";
+}
+.category-section-heading {
+  align-items: baseline;
+  border-bottom: 2px solid #172033;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
+}
+.category-section-heading span:first-child {
+  color: #172033;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.category-section-heading span:last-child {
+  color: #dc2626;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.category-grid {
+  display: grid;
+  gap: 32px 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.category-card {
+  border-bottom: 1px solid #9ca3af;
+  padding-bottom: 20px;
+}
+.category-card img {
+  aspect-ratio: 1.4;
+  object-fit: cover;
+  width: 100%;
+}
+.category-card .category-source {
+  margin-top: 16px;
+}
+.category-card h2 {
+  color: #172033;
+  font-size: 1.45rem;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin: 0 0 12px;
+}
+.category-card > p:not(.category-source) {
+  color: #4b5563;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.category-card a {
+  color: #dc2626;
+}
+.category-empty {
+  color: #172033;
+  padding: 100px 0;
+}
+@media (max-width: 767px) {
+  .category-page {
+    padding: 36px 0 56px;
+  }
+  .category-feature,
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+  .category-feature img {
+    min-height: 240px;
+  }
+  .category-feature div {
+    padding: 28px;
+  }
 }
 .leng{
   display: -webkit-box;
@@ -125,5 +331,3 @@
   padding: 10px 20px;
   font-size: 12px;
 }
-
-
