@@ -46,33 +46,28 @@ function Header() {
       <span className="navbar-toggler-icon" />
     </button>
 
-    <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNavDropdown">
+    <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav gap-3 fs-5">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" href="#">Home</Link>
-        </li>
-         <li className="nav-item">
-          <Link className="nav-link" href="#">Bussiness</Link>
-        </li>
-         <li className="nav-item">
-          <Link className="nav-link" href="#">Politics</Link>
-        </li>
-      
-        <li className="nav-item">
-          <Link className="nav-link" href="#">Culture</Link>
+          <Link className="nav-link active" aria-current="page" href="/">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" href="#">Sports</Link>
+          <Link className="nav-link" href="/business">Business</Link>
         </li>
-        <li className="nav-item dropdown">
-          <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</Link>
-          <ul className="dropdown-menu">
-            <li><Link className="dropdown-item" href="#">Science & Tech</Link></li>
-            <li><Link className="dropdown-item" href="#">Health</Link></li>
-          </ul>
+        <li className="nav-item">
+          <Link className="nav-link" href="/politics">Politics</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" href="/sports">Sports</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" href="/science">Science</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" href="/health">Health</Link>
         </li>
       </ul>
-      <span>search</span>
+      <span className="ms-lg-auto">search</span>
     </div>
   </div>
 </nav>

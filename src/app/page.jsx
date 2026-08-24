@@ -1,21 +1,63 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
-export default function Page() {
+function NewsPage() {
   const [news, setNews] = useState([]);
   const [showVideo, setShowVideo] = useState(false);
   const [playing, setPlaying] = useState(null);
+  const [error, setError] = useState("");
+  const [weeklyPostIndex, setWeeklyPostIndex] = useState(0);
   const videos = ["sC-HyWBgleM", "AvFMrroRkRk", "u3SIKAmPXY4"];
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category") || "top";
+  const categoryNames = {
+    top: "Top Stories",
+    business: "Business",
+    politics: "Politics",
+    culture: "Culture",
+    sports: "Sports",
+    technology: "Science & Tech",
+    health: "Health",
+  };
 
   useEffect(() => {
     async function getNews() {
-      const response = await fetch("/api/news");
-      const data = await response.json();
-      setNews(data.articles);
+      try {
+        setError("");
+        setWeeklyPostIndex(0);
+        const response = await fetch(`/api/news?category=${category}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error);
+        }
+
+        setNews(data.articles);
+      } catch (error) {
+        setNews([]);
+        setError(error.message || "Unable to load news articles.");
+      }
     }
     getNews();
-  }, []);
+  }, [category]);
+
+  const articlesWithImages = news.filter((article) => article.image);
+  const weeklyPost = articlesWithImages[weeklyPostIndex];
+
+  useEffect(() => {
+    if (articlesWithImages.length < 2) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setWeeklyPostIndex((index) => (index + 1) % articlesWithImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [articlesWithImages.length, category]);
 
   return (
     <>
@@ -24,12 +66,12 @@ export default function Page() {
           <div className="row">
             {/* LEFT SIDE */}
             <div className="left col-lg-8 o-lay ">
-              {news.filter((a) => a.image).slice(0, 1).map((a) => (
-                <div key={a.url}>
-                  <img className="h-100" src={a.image} alt="" />
+              {articlesWithImages.slice(0, 1).map((a) => (
+                <a className="news-story-link" href={a.url} target="_blank" rel="noreferrer" key={a.url}>
+                  <img className="lead-image" src={a.image} alt={a.title} />
                   <h2 className="fs-3 mt-2 leng">{a.title}</h2>
                   <p className="leng">{a.description}</p>
-                </div>
+                </a>
               ))}
             </div>
 
@@ -37,16 +79,18 @@ export default function Page() {
             <div className=" col-lg-4 d-none d-md-block d-lg-block">
               <h2 className="border-side mb-4 ">Most loved</h2>
               {news.filter((a) => a.image).slice(2, 7).map((a) => (
-                <div key={a.url} className="sideItem o-lay">
-                  <img src={a.image} alt="" />
+                <a className="sideItem o-lay news-story-link" href={a.url} target="_blank" rel="noreferrer" key={a.url}>
+                  <img src={a.image} alt={a.title} />
                   <div>
                     <h4>{a.title}</h4>
                     <p className="">{a.source.name}</p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
+
+          {error && <p className="text-danger mt-3">{error}</p>}
 
           {/* all 3 box */}
           <section className="left">
@@ -74,13 +118,15 @@ export default function Page() {
                       </button>
 
                       <div className="position-absolute bottom-0 start-0 m-3 text-white">
-                        <h2 className="fs-5 mt-2 d-block d-md-none">
-                          {a.title.slice(0, 50)}...
-                        </h2>
+                        <a className="news-story-link" href={a.url} target="_blank" rel="noreferrer">
+                          <h2 className="fs-5 mt-2 d-block d-md-none">
+                            {a.title.slice(0, 50)}...
+                          </h2>
 
-                        <h2 className="fs-5 mt-2 d-none d-md-block">
-                          {a.title}
-                        </h2>
+                          <h2 className="fs-5 mt-2 d-none d-md-block">
+                            {a.title}
+                          </h2>
+                        </a>
                       </div>
                     </>
                   </div>
@@ -90,7 +136,7 @@ export default function Page() {
           </section>
 
           <section>
-            <h6 className="mt-3 mb-3 fw-bold fs-1 border-down">Bussiness</h6>
+            <h6 className="mt-3 mb-3 fw-bold fs-1 border-down">{categoryNames[category] || "Top Stories"}</h6>
           </section>
           {/* left1 */}
           <section>
@@ -99,11 +145,11 @@ export default function Page() {
               <div className="row ">
                 {news.filter((a) => a.image).slice(5, 9).map((a) => (
                   
-                  <div className="col-6 col-lg-6 col-md-6 o-lay" key={a.url}>
-                    <img src={a.image} alt="" />
+                  <a className="col-6 col-lg-6 col-md-6 o-lay news-story-link" href={a.url} target="_blank" rel="noreferrer" key={a.url}>
+                    <img src={a.image} alt={a.title} />
                     <h2 className="fs-3 mt-2 leng">{a.title}</h2>
                     <p className="leng">{a.description}</p>
-                  </div>
+                  </a>
                 ))}
                 </div>
               </div>
@@ -111,27 +157,51 @@ export default function Page() {
               <div className=" col-lg-4 d-none d-md-block d-lg-block">
                 <h2 className="border-side mb-4 ">Most loved</h2>
                 {news.filter((a) => a.image).slice(2, 5).map((a) => (
-                  <div key={a.url} className="sideItem o-lay">
-                    <img src={a.image} alt="" />
+                  <a className="sideItem o-lay news-story-link" href={a.url} target="_blank" rel="noreferrer" key={a.url}>
+                    <img src={a.image} alt={a.title} />
                     <div>
                       <h4>{a.title}</h4>
                       <p className="">{a.source.name}</p>
                     </div>
-                  </div>
+                  </a>
                 ))}
 
-                {news.filter((a) => a.image).slice(5, 6).map((a) => (
-                  <div key={a.url} className="box mt-3">
-                    <h2 className="text-black">Weekly Post</h2>
-                    <img className="h-75 img-fluid mb-3" src={a.image} alt="" />
-                    <div>
-                      <h5 className="text-black ">{a.title}</h5>
-                      <p className="text-black fw-bold d-none d-md-block d-lg-block">
-                        {a.source.name}
-                      </p>
+                {weeklyPost && (
+                  <div className="box mt-3">
+                    <div className="weekly-post-header mb-3">
+                      <button
+                        className="weekly-post-control"
+                        aria-label="Previous weekly post"
+                        onClick={() =>
+                          setWeeklyPostIndex((index) =>
+                            index === 0 ? articlesWithImages.length - 1 : index - 1
+                          )
+                        }
+                      >
+                        <ChevronLeft aria-hidden="true" size={22} />
+                      </button>
+                      <h2 className="text-black mb-0">Weekly Post</h2>
+                      <button
+                        className="weekly-post-control"
+                        aria-label="Next weekly post"
+                        onClick={() =>
+                          setWeeklyPostIndex((index) =>
+                            index === articlesWithImages.length - 1 ? 0 : index + 1
+                          )
+                        }
+                      >
+                        <ChevronRight aria-hidden="true" size={22} />
+                      </button>
                     </div>
+                    <a className="news-story-link" href={weeklyPost.url} target="_blank" rel="noreferrer">
+                      <img className="weekly-post-image mb-3" src={weeklyPost.image} alt={weeklyPost.title} />
+                      <h5 className="text-black ">{weeklyPost.title}</h5>
+                      <p className="text-black fw-bold d-none d-md-block d-lg-block">
+                        {weeklyPost.source.name}
+                      </p>
+                    </a>
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </section>
@@ -144,20 +214,20 @@ export default function Page() {
               <div className="left col-lg-8  ">
                 <div className="row "></div>
                 {news.filter((a) => a.image).slice(7,8).map((a) => (
-                  <div key={a.url}>
-                    <img className="h-100 " src={a.image} alt="" />
+                  <a className="news-story-link" href={a.url} target="_blank" rel="noreferrer" key={a.url}>
+                    <img className="h-100 " src={a.image} alt={a.title} />
                     <h2 className="fs-3 mt-2">{a.title}</h2>
                     <p>{a.description}</p>
-                  </div>
+                  </a>
                 ))}
                 
               <div className="row ">
                 {news.filter((a) => a.image).slice(5, 9).map((a) => (
                   
-                  <div className="col-lg-6 o-lay mb-4" key={a.url}>
+                  <a className="col-lg-6 o-lay mb-4 news-story-link" href={a.url} target="_blank" rel="noreferrer" key={a.url}>
                   <div className="row ">
                     <div className="col-4">
-                    <img className="img-fluid rounded h-100 w-100" src={a.image} alt="" />
+                    <img className="img-fluid rounded h-100 w-100" src={a.image} alt={a.title} />
                     
                     </div>
                     <div className="col-8">
@@ -165,10 +235,10 @@ export default function Page() {
                       <div className="d-flex justify-content-between gap-3 mt-3">
             <strong>{a.source.name}</strong>
             <span>{new Date(a.publishedAt).toDateString()}</span>
-          </div>
+                      </div>
                     </div>
-                 </div>
                   </div>
+                  </a>
                 ))}
                 </div>
               </div>
@@ -186,13 +256,13 @@ export default function Page() {
 </div>
                 <h2 className="border-side mb-4">Most loved</h2>
                 {news.filter((a) => a.image).slice(6, 10).map((a) => (
-                  <div key={a.url} className="sideItem o-lay">
-                    <img src={a.image} alt="" />
+                  <a className="sideItem o-lay news-story-link" href={a.url} target="_blank" rel="noreferrer" key={a.url}>
+                    <img src={a.image} alt={a.title} />
                     <div>
                       <h4>{a.title}</h4>
                       <p className="">{a.source.name}</p>
                     </div>
-                  </div>
+                  </a>
                 ))}
                 <div>
                   <h2 className="border-side mb-4">Tags</h2>
@@ -232,5 +302,13 @@ export default function Page() {
         </div>
       )}
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <React.Suspense fallback={null}>
+      <NewsPage />
+    </React.Suspense>
   );
 }
