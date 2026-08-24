@@ -9,56 +9,34 @@ const categories = {
 };
 
 export async function GET(request) {
-  const requestedCategory = new URL(request.url).searchParams.get("category");
-  const category = categories[requestedCategory] || {};
-  const params = new URLSearchParams({
-    "api-key": process.env.GUARDIAN_API_KEY || "test",
-    "page-size": "20",
+  const category = new URL(request.url).searchParams.get("category"); //what catgory frontend asked
+ const categoryParams = categories[category] || {};
+  const params = new URLSearchParams({ //crate url query frm obj
+    "api-key": process.env.GUARDIAN_API_KEY,
+    "page-size": "10",
     "order-by": "newest",
     "show-fields": "thumbnail,trailText",
-    ...category,
+    ...categoryParams, //get info that becomes section:"tech or any categories"
   });
 
-  let response = await fetch(
+  const response = await fetch(
     `https://content.guardianapis.com/search?${params}`,
-    { next: { revalidate: 300 } }
+    { next: { revalidate: 300 } } //after 300sec get freh news cuz instead of req every time it reuse cached data
   );
 
-  // The public test key can briefly rate-limit consecutive category requests.
-  if (response.status === 429) {
-    await new Promise((resolve) => setTimeout(resolve, 1100));
-    response = await fetch(
-      `https://content.guardianapis.com/search?${params}`,
-      { next: { revalidate: 300 } }
-    );
-  }
-
-  if (!response.ok) {
-    return Response.json(
-      {
-        error:
-          response.status === 429
-            ? "The news provider is busy. Please try again shortly."
-            : "Unable to load news articles.",
-        articles: [],
-      },
-      { status: 502 }
-    );
-  }
-
   const data = await response.json();
+
   const articles = data.response.results
     .filter((article) => article.fields?.thumbnail)
-    .slice(0, 10)
     .map((article) => ({
       id: article.id,
       title: article.webTitle,
-      description: article.fields.trailText?.replace(/<[^>]*>/g, "") || "",
+      description: article.fields?.trailText || "",
       url: article.webUrl,
       image: article.fields.thumbnail,
-      source: { name: "The Guardian" },
+      source: "The Guardian",
       publishedAt: article.webPublicationDate,
     }));
 
-  return Response.json({ articles });
+  return Response.json({ articles }); //send processed data back to frontend
 }
