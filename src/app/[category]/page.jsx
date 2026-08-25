@@ -23,10 +23,8 @@ export default function CategoryPage() {
     async function getNews() {
       const response = await fetch(`/api/news?category=${category}`);
       const data = await response.json();
-
       setArticles(data.articles);
     }
-
     getNews();
   }, [category]);
 
@@ -38,37 +36,41 @@ export default function CategoryPage() {
       <h1>{topic}</h1>
 
       {featured && (
-        <article>
-          <img
+        <article >
+          <div className="">
+            <img
             src={featured.image}
             alt={featured.title}
           />
-
+          
+          <div>
           <h2>{featured.title}</h2>
           <p>{featured.description}</p>
           <p>{featured.source}</p>
 
           <a href={featured.url} target="_blank">
-            Read full story
+            Read full story 
           </a>
+          </div>
+          </div>
         </article>
       )}
 
-      <div className="row">
+      <div className="row g-3">
         {latest.map((article) => (
-          <article className="col-md-4" key={article.id}>
+          <article className="col-md-4 col-lg-4 " key={article.id}>
 
             <img
               src={article.image}
               alt={article.title}
+              className="img-fluid"
             />
+            
 
-            <p>{article.source}</p>
-
-            <h2>{article.title}</h2>
+            <h2 className="py-3">{article.title}</h2>
 
             <p>{article.description}</p>
-
+<p>{article.source}</p>
             <a href={article.url} target="_blank">
               Read story
             </a>
